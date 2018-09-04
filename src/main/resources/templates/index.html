@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Layui</title>
+    <link href="/layui/css/layui.css" th:href="@{/layui/css/layui.css}" rel="stylesheet" media="all" type="text/css">
+</head>
+<body class="layui-bg-green">
+<div class="layui-container">
+    <div class="layui-header">
+        <div th:text="|Hello Layui|">Hi Layui</div>
+    </div>
+    <div class="layui-body">
+        <div th:text="'进入'" class="layui-btn layui-bg-orange"></div>
+        <table id="demo"  lay-filter="test"></table>
+    </div>
+    <div class="layui-footer">
+        <div th:text="|${#dates.createNow()}|">Hi Layui</div>
+    </div>
+
+</div>
+</body>
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['layer','table'], function(){
+        var layer = layui.layer;
+        layer.msg('Hello World');
+        var table = layui.table;
+        table.render({
+            elem:'#demo',
+            // data:[{"name":"hello"},{"name":"world"}],
+            url:"/TableData/getTableData",
+            cols:[[
+                {field: 'username', title: 'name'}
+            ]]
+        });
+
+    });
+
+</script>
+</html>

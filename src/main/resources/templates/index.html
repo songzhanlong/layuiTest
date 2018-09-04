@@ -5,12 +5,12 @@
     <title>Layui</title>
     <link href="/layui/css/layui.css" th:href="@{/layui/css/layui.css}" rel="stylesheet" media="all" type="text/css">
 </head>
-<body class="layui-bg-green">
+<body class="layui-bg-gray">
 <div class="layui-container">
     <div class="layui-header">
         <div th:text="|Hello Layui|">Hi Layui</div>
     </div>
-    <div class="layui-body">
+    <div>
         <div th:text="'进入'" class="layui-btn layui-bg-orange"></div>
         <table id="demo"  lay-filter="test"></table>
     </div>
@@ -26,15 +26,27 @@
         var layer = layui.layer;
         layer.msg('Hello World');
         var table = layui.table;
-        table.render({
-            elem:'#demo',
-            // data:[{"name":"hello"},{"name":"world"}],
-            url:"/TableData/getTableData",
-            cols:[[
-                {field: 'username', title: 'name'}
-            ]]
-        });
 
+        table.render({
+            elem: '#demo'
+            ,height: 312
+            ,url: '/TableData/getTableData' //数据接口
+            // ,data:[{"id":10000,"username":"user-0","sex":"女","city":"城市-0","sign":"签名-0","experience":255,"logins":24,"wealth":82830700,"classify":"作家","score":57},{"id":10001,"username":"user-1","sex":"男","city":"城市-1","sign":"签名-1","experience":884,"logins":58,"wealth":64928690,"classify":"词人","score":27},{"id":10002,"username":"user-2","sex":"女","city":"城市-2","sign":"签名-2","experience":650,"logins":77,"wealth":6298078,"classify":"酱油","score":31},{"id":10003,"username":"user-3","sex":"女","city":"城市-3","sign":"签名-3","experience":362,"logins":157,"wealth":37117017,"classify":"诗人","score":68}]
+            ,page: true //开启分页
+            ,cols: [
+                [
+                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'username', title: '用户名', width:80}
+                ,{field: 'sex', title: '性别', width:80, sort: true}
+                ,{field: 'city', title: '城市', width:80}
+                ,{field: 'sign', title: '签名', width: 177}
+                ,{field: 'experience', title: '积分', width: 80, sort: true}
+                ,{field: 'score', title: '评分', width: 80, sort: true}
+                ,{field: 'classify', title: '职业', width: 80}
+                ,{field: 'wealth', title: '财富', width: 135, sort: true}
+            ]
+            ]
+        });
     });
 
 </script>
